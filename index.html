@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruise Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+
+        <div class="booking-content">
+            <h1>Cruise Queen</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book./p>
+        </div>
+
+
+        <div class="booking-form">
+            <h3>Book Ocean Time</h3>
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input class="inp-style" type="text" name="" id="fly-from" placeholder="Dhake, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" id="fly-to" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                        <input class="inp-style" type="date" name="" id="d-date">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="" id="r-date">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label for="">First Class ($150)</label>
+                    <input id="firstClassTicket-count" class="inp-style inp-width" type="number" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <p> <span onclick="inputHandler('firstClassTicket', true)">+</span> <span
+                            onclick="inputHandler('firstClassTicket', false)">-</span> </p>
+                </div>
+            </div>
+
+            <div class="input-group f-class">
+                <div>
+                    <label for="">Economy ($100)</label>
+                    <input id="economyClassTicket-count" class="inp-style inp-width" type="number" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <p> <span onclick="inputHandler('economyClassTicket', true)">+</span> <span
+                            onclick="inputHandler('economyClassTicket', false)">-</span> </p>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="total-price">00</span></p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="tax">00</span></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="total-price-with-tax">00</span></p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-style" data-toggle="modal" onclick="modalHandler()" data-target="#modal">Book
+                Now</button>
+        </div>
+
+        <div class="modal fade" id="modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Reservation</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <p>Flying From: <span id="from"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Flying To: <span id="to"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Departure Date: <span id="dep-date"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Return Date: <span id="ret-date"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>First Class Ticket: <span id="first-ticket"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Price: <span id="first-price"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Economy Class Ticket: <span id="economy-ticket"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Price: <span id="economy-price"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Total Ticket: <span id="total-ticket"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Sub Total: <span id="sub-total"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Vat Amount: <span id="vat-amount"></span></p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>Total Amount: <span id="total-amount"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary mr-4">
+                            ok
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!--Thank You-->
+
+    <!-- script -->
+    <script>
+
+        let totalPrice = 0;
+        let tax = 0;
+        let totalPriceIncludingTax = 0;
+        let firstClassTicketCount = 0;
+        let firstClassTicketTotalPrice = 0;
+        let economyClassTicketTotalPrice = 0;
+        let economyClassTicketCount = 0;
+        let totalTicket = 0;
+
+        function inputHandler(ticket, isIncrease) {
+            const ticketInput = document.getElementById(ticket + '-count');
+            const ticketCount = getInputValue(ticket);
+            let ticketNewCount = ticketCount;
+
+            if (isIncrease == true) {
+                ticketNewCount = ticketCount + 1;
+            }
+            if (isIncrease == false && ticketCount > 0) {
+                ticketNewCount = ticketCount - 1;
+            }
+            ticketInput.value = ticketNewCount;
+
+            if (ticket == 'firstClassTicketCount') {
+                ticketTotal = ticketNewCount * 150;
+            }
+            if (ticket == 'economyClassTicketCount') {
+                ticketTotal = ticketNewCount * 100;
+            }
+            calculation();
+        }
+
+        // all kind of calculation function
+        function calculation() {
+            firstClassTicketCount = getInputValue('firstClassTicket');
+            economyClassTicketCount = getInputValue('economyClassTicket');
+            totalTicket = firstClassTicketCount + economyClassTicketCount;
+            firstClassTicketTotalPrice = firstClassTicketCount * 150
+            economyClassTicketTotalPrice = economyClassTicketCount * 100;
+            totalPrice = firstClassTicketTotalPrice + economyClassTicketTotalPrice;
+            document.getElementById('total-price').innerText = totalPrice;
+            tax = Math.round(totalPrice / 10);
+            document.getElementById('tax').innerText = tax;
+            totalPriceIncludingTax = totalPrice + tax;
+            document.getElementById('total-price-with-tax').innerText = totalPriceIncludingTax;
+        }
+
+        // get input value function
+        function getInputValue(ticket) {
+            const ticketInput = document.getElementById(ticket + '-count');
+            const ticketCount = parseInt(ticketInput.value);
+            return ticketCount;
+        }
+
+
+        //modal, where shown all information about flight
+        function modalHandler() {
+            const flyFrom = document.getElementById('fly-from').value;
+            document.getElementById('from').innerText = flyFrom;
+            const flyTo = document.getElementById('fly-to').value;
+            document.getElementById('to').innerText = flyTo;
+            const retDate = document.getElementById('r-date').value;
+            document.getElementById('ret-date').innerText = retDate;
+            const depDate = document.getElementById('d-date').value;
+            document.getElementById('dep-date').innerText = depDate;
+
+            document.getElementById('first-ticket').innerText = firstClassTicketCount;
+            document.getElementById('economy-ticket').innerText = economyClassTicketCount;
+            document.getElementById('first-price').innerText = firstClassTicketTotalPrice;
+            document.getElementById('economy-price').innerText = economyClassTicketTotalPrice;
+            document.getElementById('total-ticket').innerText = totalTicket;
+            document.getElementById('sub-total').innerText = totalPrice;
+            document.getElementById('vat-amount').innerText = tax;
+            document.getElementById('total-amount').innerText = totalPriceIncludingTax;
+        }
+
+    </script>
+</body>
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+
+</html>
